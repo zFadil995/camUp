@@ -1,0 +1,15 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="CamUp.IntroPage">
+  <ContentPage.Content>
+    <StackLayout BackgroundColor="#FF0000" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+      <StackLayout  Orientation="Horizontal" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand">
+        <Image x:Name="CameraButton" Source="camera.png" VerticalOptions="Center" HorizontalOptions="End" WidthRequest="100" HeightRequest="100">
+        </Image>
+        <Image x:Name="GalleryButton" Source="photos.png" VerticalOptions="Center" HorizontalOptions="Start" WidthRequest="100" HeightRequest="100">
+        </Image>
+      </StackLayout>
+    </StackLayout>
+  </ContentPage.Content>
+</ContentPage>

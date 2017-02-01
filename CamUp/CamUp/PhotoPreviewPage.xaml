@@ -1,0 +1,15 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:CamUp;assembly=CamUp"
+             x:Class="CamUp.PhotoPreviewPage">
+  <ContentPage.Content>
+    <StackLayout BackgroundColor="#FF0000" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+      <Image x:Name="PreviewImage" Margin="5" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" ></Image>
+      <StackLayout Orientation="Horizontal" HorizontalOptions="End" VerticalOptions="End">
+        <Button x:Name="DeleteButton" TextColor="#FF0000" Text="DELETE" HorizontalOptions="StartAndExpand" VerticalOptions="Center" Clicked="DeleteClicked"/>
+        <local:ShareButton x:Name="ShareButton" TextColor="#FF0000" Margin="7" Text="SHARE" HorizontalOptions="EndAndExpand" VerticalOptions="Center" />
+      </StackLayout>
+    </StackLayout>
+  </ContentPage.Content>
+</ContentPage>
