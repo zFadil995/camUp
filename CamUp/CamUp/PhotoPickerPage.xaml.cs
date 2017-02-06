@@ -13,7 +13,7 @@ namespace CamUp
         public PhotoPickerPage()
         {
             InitializeComponent();
-            TapGestureRecognizer galleryTapped = new TapGestureRecognizer() { Command = new Command(new Action(BackClicked())) };
+            TapGestureRecognizer galleryTapped = new TapGestureRecognizer() { Command = new Command(new Action(BackClicked)) };
             BackImage.GestureRecognizers.Add(galleryTapped);
             if (Device.OS == TargetPlatform.iOS)
             {
@@ -91,7 +91,7 @@ namespace CamUp
             }
         }
 
-        private void BackClicked(object sender, EventArgs e)
+        private void BackClicked()
         {
             Navigation.PopModalAsync();
         }

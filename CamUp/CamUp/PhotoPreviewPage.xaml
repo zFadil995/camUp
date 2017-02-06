@@ -5,10 +5,11 @@
              x:Class="CamUp.PhotoPreviewPage">
   <ContentPage.Content>
     <StackLayout BackgroundColor="#FF0000" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+      <Image x:Name="BackImage" Source="back.png" HorizontalOptions="Start" VerticalOptions="Center" Margin="10"/>
       <Image x:Name="PreviewImage" Margin="5" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" ></Image>
       <StackLayout Orientation="Horizontal" HorizontalOptions="End" VerticalOptions="End">
-        <Button x:Name="DeleteButton" TextColor="#FF0000" Text="DELETE" HorizontalOptions="StartAndExpand" VerticalOptions="Center" Clicked="DeleteClicked"/>
-        <local:ShareButton x:Name="ShareButton" TextColor="#FF0000" Margin="7" Text="SHARE" HorizontalOptions="EndAndExpand" VerticalOptions="Center" />
+        <Button x:Name="DeleteButton" TextColor="#FF0000"  Text="DELETE" HorizontalOptions="StartAndExpand" VerticalOptions="Center" Clicked="DeleteClicked"/>
+        <local:ShareButton x:Name="ShareButton" TextColor="#FF0000"  Margin="7" Text="SHARE" HorizontalOptions="EndAndExpand" VerticalOptions="Center" />
       </StackLayout>
     </StackLayout>
   </ContentPage.Content>

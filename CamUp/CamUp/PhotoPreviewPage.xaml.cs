@@ -14,9 +14,12 @@ namespace CamUp
         public PhotoPreviewPage(string ImagePath)
         {
             InitializeComponent();
+            TapGestureRecognizer galleryTapped = new TapGestureRecognizer() { Command = new Command(new Action(BackClicked)) };
+            BackImage.GestureRecognizers.Add(galleryTapped);
             _imagePath = ImagePath;
             PreviewImage.Source = _imagePath;
             ShareButton.Path = _imagePath;
+            if(Device.OS == TargetPlatform.iOS) { DeleteButton.BackgroundColor = Color.White; ShareButton.BackgroundColor = Color.White;}
         }
 
         private async void DeleteClicked(object sender, EventArgs e)
@@ -28,6 +31,10 @@ namespace CamUp
                 ((PhotoPickerPage) Navigation.ModalStack[0]).Updated = false;
             }
             await Navigation.PopModalAsync();
+        }
+        private void BackClicked()
+        {
+            Navigation.PopModalAsync();
         }
     }
 }
