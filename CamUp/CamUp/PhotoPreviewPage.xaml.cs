@@ -19,7 +19,7 @@ namespace CamUp
             _imagePath = ImagePath;
             PreviewImage.Source = _imagePath;
             ShareButton.Path = _imagePath;
-            if(Device.OS == TargetPlatform.iOS) { DeleteButton.BackgroundColor = Color.White; ShareButton.BackgroundColor = Color.White;}
+            if(Device.OS != TargetPlatform.Android) { DeleteButton.BackgroundColor = Color.White; ShareButton.BackgroundColor = Color.White;}
         }
 
         private async void DeleteClicked(object sender, EventArgs e)

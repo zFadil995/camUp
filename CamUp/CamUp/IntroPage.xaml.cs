@@ -52,6 +52,8 @@ namespace CamUp
             {
                 if (PhotoFile.AlbumPath.Contains("/"))
                     Settings.FolderPath = PhotoFile.AlbumPath.Substring(0, PhotoFile.AlbumPath.LastIndexOf('/'));
+                if (PhotoFile.AlbumPath.Contains("\\"))
+                    Settings.FolderPath = PhotoFile.AlbumPath.Substring(0, PhotoFile.AlbumPath.LastIndexOf('\\'));
             }
             else if (PhotoFile.Path.Contains("\\"))
                 Settings.FolderPath = PhotoFile.Path.Substring(0, PhotoFile.Path.LastIndexOf('\\'));
