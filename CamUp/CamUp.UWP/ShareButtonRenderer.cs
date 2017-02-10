@@ -25,6 +25,7 @@ namespace CamUp.UWP
 
         private void ShareClick(object sender, EventArgs e)
         {
+
             ((ShareButton) sender).Text = _path;
         }
     }
