@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -11,15 +12,25 @@ namespace CamUp
     public partial class PhotoPreviewPage : ContentPage
     {
         private string _imagePath;
-        public PhotoPreviewPage(string ImagePath)
+        public PhotoPreviewPage(IFile Image)
         {
             InitializeComponent();
+            ShareButton.IsEnabled = false;
+            DeleteButton.IsEnabled = false;
             TapGestureRecognizer galleryTapped = new TapGestureRecognizer() { Command = new Command(new Action(BackClicked)) };
             BackImage.GestureRecognizers.Add(galleryTapped);
-            _imagePath = ImagePath;
-            PreviewImage.Source = _imagePath;
-            ShareButton.Path = _imagePath;
+            SetImage(Image);
             if(Device.OS != TargetPlatform.Android) { DeleteButton.BackgroundColor = Color.White; ShareButton.BackgroundColor = Color.White;}
+        }
+
+        private async void SetImage(IFile Image)
+        {
+            Stream stream = await Image.OpenAsync(FileAccess.Read);
+            _imagePath = Image.Path;
+            PreviewImage.Source = ImageSource.FromStream(() => stream);
+            ShareButton.Path = _imagePath;
+            ShareButton.IsEnabled = true;
+            DeleteButton.IsEnabled = true;
         }
 
         private async void DeleteClicked(object sender, EventArgs e)

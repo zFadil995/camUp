@@ -75,11 +75,11 @@ namespace CamUp
                                 {
                                     new Image
                                     {
-                                        Source = ImageSource.FromStream(() => new MemoryStream(resizedImage)),
+                                        Source =  ImageSource.FromStream(() => new MemoryStream(resizedImage)),
                                         Margin = 5,
                                         VerticalOptions = LayoutOptions.CenterAndExpand,
                                         HorizontalOptions = LayoutOptions.CenterAndExpand,
-                                        GestureRecognizers = { new TapGestureRecognizer() {Command = new Command(new Action(() => Navigation.PushModalAsync(new PhotoPreviewPage(photoFile.Path))))} }
+                                        GestureRecognizers = { new TapGestureRecognizer() {Command = new Command(new Action(() => Navigation.PushModalAsync(new PhotoPreviewPage(photoFile))))} }
                                     }
                                 }
                             };

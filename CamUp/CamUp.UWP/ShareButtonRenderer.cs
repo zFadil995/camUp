@@ -1,12 +1,13 @@
 ﻿using System;
+using System.IO;
 using Windows.ApplicationModel;
-using CamUp;
-using CamUp.UWP;
-using Xamarin.Forms.Platform.UWP;
 using Windows.ApplicationModel.DataTransfer;
 using Windows.Foundation;
 using Windows.Storage;
 using Windows.Storage.Streams;
+using CamUp;
+using CamUp.UWP;
+using Xamarin.Forms.Platform.UWP;
 
 [assembly: ExportRenderer(typeof(ShareButton), typeof(ShareButtonRenderer))]
 namespace CamUp.UWP
@@ -18,19 +19,21 @@ namespace CamUp.UWP
         protected override void OnElementChanged(ElementChangedEventArgs<Xamarin.Forms.Button> e)
         {
             base.OnElementChanged(e);
+            RegisterForShare();
 
             if (Control != null)
             {
                 ShareButton share = e.NewElement as ShareButton;
-                _path = share.Path;
                 share.Clicked += ShareClick;
             }
         }
 
-        private void ShareClick(object sender, EventArgs e)
+        private async void ShareClick(object sender, EventArgs e)
         {
-            ((ShareButton) sender).Text = _path;
+            _path = ((ShareButton) sender).Path;
+            DataTransferManager.ShowShareUI();
         }
+
         private void RegisterForShare()
         {
             DataTransferManager dataTransferManager = DataTransferManager.GetForCurrentView();
@@ -42,22 +45,18 @@ namespace CamUp.UWP
             DataRequestedEventArgs e)
         {
             DataRequest request = e.Request;
-            request.Data.Properties.Title = "Share Image Example";
-            request.Data.Properties.Description = "Demonstrates how to share an image.";
+            request.Data.Properties.Title = "Camup Image";
+            request.Data.Properties.Description = "Image captured in CamUp and shared.";
 
-            // Because we are making async calls in the DataRequested event handler,
-            //  we need to get the deferral first.
             DataRequestDeferral deferral = request.GetDeferral();
-
-            // Make sure we always call Complete on the deferral.
             try
             {
                 StorageFile thumbnailFile =
-                    await Package.Current.InstalledLocation.GetFileAsync("Assets\\SmallLogo.png");
+                    await StorageFile.GetFileFromPathAsync(_path);
                 request.Data.Properties.Thumbnail =
                     RandomAccessStreamReference.CreateFromFile(thumbnailFile);
                 StorageFile imageFile =
-                    await Package.Current.InstalledLocation.GetFileAsync("Assets\\Logo.png");
+                    await StorageFile.GetFileFromPathAsync(_path);
                 request.Data.SetBitmap(RandomAccessStreamReference.CreateFromFile(imageFile));
             }
             finally
